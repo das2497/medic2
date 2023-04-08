@@ -12,7 +12,7 @@ if (isset($_POST["pid"])) {
         if ($rs->num_rows > 0) {
             
 ?>
-            <p class="text-center " style="height: 2%;">Report Count <?= $rs->num_rows; ?></p>
+            <!-- <p class="text-center " style="height: 2%;">Report Count <?= $rs->num_rows; ?></p> -->
 
             <?php
             for ($i = 0; $i < $rs->num_rows; $i++) {
@@ -21,6 +21,7 @@ if (isset($_POST["pid"])) {
             ?>
                 <div class="col-12 col-lg-8 offset-lg-2 shadow my-2 p-2 rounded" >
                     <div class="row">
+                        <h4><?= $d["date"]; ?></h4>
                         <div class="col-10 offset-1 d-grid mt-2"><label class="form-label">Drugs And Doses</label>
                             <textarea class="form-control" id="" cols="30" rows="10" readonly><?= $d["drugs_doses"]; ?></textarea>
                         </div>

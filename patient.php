@@ -308,7 +308,7 @@ if (isset($_SESSION["PT"])) {
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text" id="basic-addon1">Search</span>
                                                         </div>
-                                                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                                                        <input id="dchnlpt" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" onkeyup="searchDoctorChannel();">
                                                     </div>
                                                 </div>
                                                 <?php

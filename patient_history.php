@@ -55,7 +55,7 @@ if (isset($_SESSION["DT"])) {
                                         <span class="navbar-toggler-icon "></span>
                                     </button>
                                     <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                                        <ul class="navbar-nav mb-2 mb-lg-0 text-end  ">
+                                        <!-- <ul class="navbar-nav mb-2 mb-lg-0 text-end  ">
                                             <li class="nav-item" onclick="THdash();">
                                                 <a class="nav-link fw-bold d-block d-lg-none text-white" aria-current="page" href="#">Appoinments</a>
                                             </li>
@@ -69,7 +69,7 @@ if (isset($_SESSION["DT"])) {
                                             <li class="nav-item">
                                                 <a class="nav-link fw-bold text-white" onclick="doctor_logout();" href="#" tabindex="-1" aria-disabled="true">log out</a>
                                             </li>
-                                        </ul>
+                                        </ul> -->
                                     </div>
                                 </div>
                             </nav>
@@ -90,13 +90,13 @@ if (isset($_SESSION["DT"])) {
                             <div class="row d-none d-lg-flex vh-100">
                                 <div class="col-12 d-none d-lg-block px-sm-2 px-0 bg-dark">
                                     <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white ">
-                                        <h4 class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white">Menu</h4>
+                                        <!-- <h4 class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white">Menu</h4>
                                         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                                             <li>
                                                 <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                                                     <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline text-white">Appoinments</span> </a>
                                             </li>
-                                        </ul>
+                                        </ul> -->
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +119,7 @@ if (isset($_SESSION["DT"])) {
                                                     <p class="fw-bold">Appoinment No.</p>
                                                 </div>
                                                 <div class="col-6">
-                                                    <p>444444</p>
+                                                    <p><?= $_GET["appoinmtid"] ?></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -127,15 +127,7 @@ if (isset($_SESSION["DT"])) {
                                                     <p class="fw-bold">Patient Id</p>
                                                 </div>
                                                 <div class="col-6">
-                                                    <p>555555</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <p class="fw-bold">Datw</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <p>2022-12-30</p>
+                                                    <p><?= $_GET["pid"] ?></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -143,8 +135,8 @@ if (isset($_SESSION["DT"])) {
                                 </div>
                                 <div class="col-12 mt-4">
                                     <div class="row">
-                                        <div class="col-6 d-grid" onclick="prescriptionhistory();">
-                                            <button class="btn btn-outline-primary" >Prescription History</button>
+                                        <div class="col-6 d-grid">
+                                            <button class="btn btn-outline-primary" onclick="prescriptionhistory();">Prescription History</button>
                                         </div>
                                         <div class="col-6 d-grid">
                                             <button class="btn btn-outline-primary" onclick="labreporthistry();">Lab Reports</button>
@@ -154,6 +146,7 @@ if (isset($_SESSION["DT"])) {
                                 <div class="col-10 offset-1 mt-4 overflow-scroll vh-100">
                                     <div class="row">
                                         <div class="col-12" id="preshistory" style="display: block;">
+                                            <h2 class="text-center fw-bold p-4">Prescription History</h2>
                                             <?php
 
                                             $rs1 = Database::search("SELECT *
@@ -185,22 +178,24 @@ if (isset($_SESSION["DT"])) {
                                             ?>
                                         </div>
                                         <div class="col-12" id="labreporthistory" style="display: none;">
+                                            <h2 class="text-center fw-bold p-4">Lab Reports History</h2>
                                             <?php
 
-                                            $rs2 = Database::search("");
+                                            $rs2 = Database::search("SELECT * FROM lab_reports WHERE petiont_id='" .  $_GET["pid"] . "';");
 
                                             $n2 = $rs2->num_rows;
+
+
 
                                             for ($i = 0; $i < $n2; $i++) {
                                                 $d2 = $rs2->fetch_assoc();
 
                                             ?>
                                                 <div class="row border m-1 rounded">
-                                                    <div class="col-12">
-                                                        <h4>Date : 2022-12-31</h4>
+                                                    <div class="col-12 p-2">
+                                                        <h4>Date : <?= $d2["date"]; ?></h4>
                                                     </div>
-                                                    <div class="col-12"><label class="form-label">Lab Report</label>
-                                                        <img src="assets/Untitled (800 × 800 px).svg" alt="Lab Report">
+                                                        <iframe src="<?= $d2["path"]; ?>" frameborder="2" width="100%" height="600px"></iframe>
                                                     </div>
                                                 </div>
                                             <?php
@@ -233,11 +228,15 @@ if (isset($_SESSION["DT"])) {
 
         <script>
             var prescriptionhistory = function() {
-                alert("prescription_history");
+                //   alert("prescription_history");
+                document.getElementById("preshistory").style.display = "block";
+                document.getElementById("labreporthistory").style.display = "none";
             }
 
             var labreporthistry = function() {
-                alert("labreporthistry");
+                //   alert("labreporthistry");
+                document.getElementById("labreporthistory").style.display = "block";
+                document.getElementById("preshistory").style.display = "none";
             }
         </script>
     </body>

@@ -384,7 +384,9 @@ function make_appointment(chnlid, pid) {
 
 // }
 
-function checkedPatient(pregno) {
+function checkedPatient(pregno, appointment_id) {
+
+    alert(pregno, appointment_id);
 
     var r = new XMLHttpRequest();
     r.onreadystatechange = function() {
@@ -396,7 +398,8 @@ function checkedPatient(pregno) {
     }
 
     var f = new FormData();
-
+    f.append("pid", pregno);
+    f.append("appoinmtid", appointment_id);
     r.open("POST", "opened_apoinmnt.php", true);
     r.send(f);
 
@@ -1108,4 +1111,24 @@ function admin_update_nrs(nrsid) {
 
 function register_patient() {
 
+}
+
+//=============================================================================================================
+
+function searchDoctorChannel() {
+    var key = document.getElementById("dchnlpt").value;
+
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function() {
+        if (r.readyState == 4) {
+            var t = r.responseText;
+            if (t != " ") {
+                document.getElementById("docchnl").innerHTML = t;
+            }
+        }
+    }
+    var f = new FormData();
+    f.append("key", key);
+    r.open("POST", "dchannel_search_process.php", true);
+    r.send(f);
 }

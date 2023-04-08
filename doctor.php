@@ -154,7 +154,9 @@ if (isset($_SESSION["DT"])) {
                                                                 <td><?= $dcd["preg_no"]; ?></td>
                                                                 <td><?= $dcd["name"]; ?></td>
                                                                 <td>
-                                                                    <button id="pchecked" class="btn btn-outline-primary fw-bold" onclick="checkedPatient('<?= $dcd['preg_no']; ?>');">Open Appoinment</button>
+                                                                    <button id="pchecked" class="btn btn-outline-primary fw-bold" onclick="checkedPatient('<?= $dcd['preg_no']; ?>','<?= $dcd['p_chnl_id']; ?>');">
+                                                                    Open Appoinment
+                                                                    </button>
                                                                 </td>
                                                             </tr>
                                                         <?php

@@ -1,17 +1,30 @@
 <?php
 
-session_start();
-
 require 'connection.php';
 
-$x;
+$q = "";
 
-if ($_POST["specid"] == 'x') {
-    $x = ";";
+if (empty($_POST["key"])) {
+    $q .= ";";
 } else {
-    $x = " WHERE doctor.specialty='" . $_POST['specid'] . "';";
+    $q .= " WHERE doctor.name LIKE '%" . $_POST["key"] . "%' OR specialies.speciality LIKE '%" . $_POST["key"] . "%';";
 }
+// $rs = Database::search("SELECT doctor.id, doctor.uname, doctor.name, doctor.specialty, specialies.speciality, doctor.password
+// FROM doctor
+// INNER JOIN specialies ON doctor.specialty=specialies.id" . $q);
+
+// if ($rs->num_rows > 0) {
+//     echo "okkk";
+// }
+
+// echo $rs->num_rows;
+
+// echo "SELECT doctor.id, doctor.uname, doctor.name, doctor.specialty, specialies.speciality, doctor.password
+// FROM doctor
+// INNER JOIN specialies ON doctor.specialty=specialies.id" . $q;
+
 ?>
+
 
 <table class=" table table-responsive shadow stdn mt-4">
     <thead>
@@ -24,13 +37,12 @@ if ($_POST["specid"] == 'x') {
         <?php
 
         $rs1 = Database::search("SELECT doctor.id, doctor.uname, doctor.name, doctor.specialty, specialies.speciality, doctor.password FROM doctor 
-        INNER JOIN specialies ON doctor.specialty=specialies.id" . $x);
+        INNER JOIN specialies ON doctor.specialty=specialies.id" . $q);
 
 
         $sn = $rs1->num_rows;
 
         if ($sn > 0) {
-
 
 
             for ($i = 0; $i < $sn; $i++) {
