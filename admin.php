@@ -313,7 +313,7 @@ if (isset($_SESSION["AD"])) {
                                                                     <td class="text-center p-1"><input class="form-control" type="text" value="<?= $rdnrs["name"]; ?>" id="<?= $rdnrs["nrs_id"] . 2 ?>"></td>
                                                                     <td class="text-center p-1"><input class="form-control" type="text" value="<?= $rdnrs["nic"]; ?>" id="<?= $rdnrs["nrs_id"] . 3 ?>"></td>
                                                                     <td class="text-center p-1"><button class="btn btn-outline-primary w-100 fw-bold " onclick="admin_update_nrs('<?= $rdnrs['nrs_id']; ?>');">Update</button></td>
-                                                                    <td class="text-center p-1"><button class="btn btn-outline-danger w-100 fw-bold ">Delete</button></td>
+                                                                    <td class="text-center p-1"><button class="btn btn-outline-danger w-100 fw-bold " onclick="admin_delete_nrs('<?= $rdnrs['uname']; ?>','<?= $rdnrs['nic']; ?>');">Delete</button></td>
                                                                 </tr>
                                                             <?php
                                                             }
@@ -357,11 +357,11 @@ if (isset($_SESSION["AD"])) {
                                                                 $rdphm = $rsphm->fetch_assoc();
                                                             ?>
                                                                 <tr>
-                                                                    <td class="text-center p-1"><input class="form-control" type="text" value="<?= $rdphm["uname"]; ?>"></td>
-                                                                    <td class="text-center p-1"><input class="form-control" type="text" value="<?= $rdphm["name"]; ?>"></td>
-                                                                    <td class="text-center p-1"><input class="form-control" type="text" value="<?= $rdphm["nic"]; ?>"></td>
+                                                                    <td class="text-center p-1"><input class="form-control" type="text" value="<?= $rdphm["uname"]; ?>" id="<?= $rdphm["ph_id"] . 1 ?>"></td>
+                                                                    <td class="text-center p-1"><input class="form-control" type="text" value="<?= $rdphm["name"]; ?>" id="<?= $rdphm["ph_id"] . 2 ?>"></td>
+                                                                    <td class="text-center p-1"><input class="form-control" type="text" value="<?= $rdphm["nic"]; ?>" id="<?= $rdphm["ph_id"] . 3 ?>"></td>
                                                                     <td class="text-center p-1"><button class="btn btn-outline-primary w-100 fw-bold " onclick="admin_update_phm('<?= $rdphm['ph_id']; ?>');">Update</button></td>
-                                                                    <td class="text-center p-1"><button class="btn btn-outline-danger w-100 fw-bold ">Delete</button></td>
+                                                                    <td class="text-center p-1"><button class="btn btn-outline-danger w-100 fw-bold " onclick="admin_update_phs('<?= $rdphm['uname']; ?>','<?= $rdphm['nic']; ?>');">Delete</button></td>
                                                                 </tr>
                                                             <?php
                                                             }
@@ -469,18 +469,18 @@ if (isset($_SESSION["AD"])) {
                         <div class="row">
                             <div class="col-12 ">
                                 <label class="form-label text-white"><span class="text-danger">*</span>Username</label><br>
-                                <small id="recipaddunamesmall" style="display: none;" class="small">Please Doctor Username</small>
-                                <input type="text" class="form-control" placeholder="Type Doctor Username" id="recipadduname">
+                                <small id="recipaddunamesmall" style="display: none;" class="small">Please Receptionist Username</small>
+                                <input type="text" class="form-control" placeholder="Type Receptionist Username" id="recipadduname">
                             </div>
                             <div class="col-12 ">
                                 <label class="form-label text-white"><span class="text-danger">*</span>Name</label><br>
-                                <small id="recipaddnamesmall" style="display: none;" class="small">Please Doctor Name</small>
-                                <input type="text" class="form-control" placeholder="Type Doctor Name" id="recipaddname">
+                                <small id="recipaddnamesmall" style="display: none;" class="small">Please Receptionist Name</small>
+                                <input type="text" class="form-control" placeholder="Type Receptionist Name" id="recipaddname">
                             </div>
                             <div class="col-12 ">
                                 <label class="form-label text-white"><span class="text-danger">*</span>NIC</label><br>
-                                <small id="recipaddNICsmall" style="display: none;" class="small">Please Doctor NIC</small>
-                                <input type="text" class="form-control" placeholder="Type Speciality" id="recipaddNIC">
+                                <small id="recipaddNICsmall" style="display: none;" class="small">Please Receptionist NIC</small>
+                                <input type="text" class="form-control" placeholder="Type NIC No" id="recipaddNIC">
                             </div>
                         </div>
                         <div class="col-12 ">
@@ -513,7 +513,7 @@ if (isset($_SESSION["AD"])) {
                         <div class="col-12 ">
                             <label class="form-label text-white"><span class="text-danger">*</span>Password</label><br>
                             <small id="recipaddPasswordsmall" style="display: none;" class="small">Please Enter Password</small>
-                            <input type="text" class="form-control" placeholder="Type Contact Number" id="recipaddPassword">
+                            <input type="text" class="form-control" placeholder="Type Password" id="recipaddPassword">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -543,13 +543,13 @@ if (isset($_SESSION["AD"])) {
                         <div class="row">
                             <div class="col-12 ">
                                 <label class="form-label text-white"><span class="text-danger">*</span>Username</label><br>
-                                <small id="adminaddnurseunamesmall" style="display: none;" class="small">Please Doctor Username</small>
-                                <input type="text" class="form-control" placeholder="Type Doctor Username" id="adminaddnurseuname">
+                                <small id="adminaddnurseunamesmall" style="display: none;" class="small">Please Nurse Username</small>
+                                <input type="text" class="form-control" placeholder="Type Nurse Username" id="adminaddnurseuname">
                             </div>
                             <div class="col-12 ">
                                 <label class="form-label text-white"><span class="text-danger">*</span>Name</label><br>
-                                <small id="adminaddnursenamesmall" style="display: none;" class="small">Please Doctor Name</small>
-                                <input type="text" class="form-control" placeholder="Type Doctor Name" id="adminaddnursename">
+                                <small id="adminaddnursenamesmall" style="display: none;" class="small">Please Nurse Name</small>
+                                <input type="text" class="form-control" placeholder="Type Nurse Name" id="adminaddnursename">
                             </div>
                             <div class="col-12 ">
                                 <label class="form-label text-white"><span class="text-danger">*</span>NIC</label><br>
@@ -559,8 +559,8 @@ if (isset($_SESSION["AD"])) {
                         </div>
                         <div class="col-12 ">
                             <label class="form-label text-white"><span class="text-danger">*</span>Password</label><br>
-                            <small id="adminaddnursepasssmall" style="display: none;" class="small">Please Doctor Password</small>
-                            <input type="text" class="form-control" placeholder="Type Doctor Password" id="adminaddnursepass">
+                            <small id="adminaddnursepasssmall" style="display: none;" class="small">Please Nurse Password</small>
+                            <input type="text" class="form-control" placeholder="Type Nurse Password" id="adminaddnursepass">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -582,32 +582,32 @@ if (isset($_SESSION["AD"])) {
         <div class="modal fade " id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog ">
                 <div class="modal-content " style="background-color: #24243e;">
-                    <h4 class="text-success fw-bold text-center mt-1" style="display: none;" id="adminaddsuccesssmall">Successfull</h4>
+                    <h4 class="text-success fw-bold text-center mt-1" style="display: none;" id="adminaddphssuccesssmallphs">Successfull</h4>
                     <div class="modal-header">
-                        <h1 class="modal-title text-white text-uppercase fs-5" id="staticBackdropLabel">Add Doctor</h1>
+                        <h1 class="modal-title text-white text-uppercase fs-5" id="staticBackdropLabel">Add Pharmacist</h1>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-12 ">
                                 <label class="form-label text-white"><span class="text-danger">*</span>Username</label><br>
-                                <small id="adminaddunamesmall" style="display: none;" class="small">Please Doctor Username</small>
-                                <input type="text" class="form-control" placeholder="Type Doctor Username" id="adminadduname">
+                                <small id="adminaddunamesmallphs" style="display: none;" class="small">Please Pharmacist Username</small>
+                                <input type="text" class="form-control" placeholder="Type Pharmacist Username" id="adminaddunamephs">
                             </div>
                             <div class="col-12 ">
                                 <label class="form-label text-white"><span class="text-danger">*</span>Name</label><br>
-                                <small id="adminaddnamesmall" style="display: none;" class="small">Please Doctor Name</small>
-                                <input type="text" class="form-control" placeholder="Type Doctor Name" id="adminaddname">
+                                <small id="adminaddnamesmallphs" style="display: none;" class="small">Please Pharmacist Name</small>
+                                <input type="text" class="form-control" placeholder="Type Pharmacist Name" id="adminaddnamephs">
                             </div>
                             <div class="col-12 ">
                                 <label class="form-label text-white"><span class="text-danger">*</span>NIC</label><br>
-                                <small id="adminaddspesltsmall" style="display: none;" class="small">Please Enter NIC</small>
-                                <input type="text" class="form-control" placeholder="Type NIC" id="adminaddname">
+                                <small id="adminaddnicsmallphs" style="display: none;" class="small">Please Enter NIC</small>
+                                <input type="text" class="form-control" placeholder="Type NIC" id="adminaddnicphs">
                             </div>
                         </div>
                         <div class="col-12 ">
                             <label class="form-label text-white"><span class="text-danger">*</span>Password</label><br>
-                            <small id="adminaddpasssmall" style="display: none;" class="small">Please Doctor Password</small>
-                            <input type="text" class="form-control" placeholder="Type Doctor Password" id="adminaddpass">
+                            <small id="adminaddpasssmallphs" style="display: none;" class="small">Please Pharmacist Password</small>
+                            <input type="text" class="form-control" placeholder="Type Pharmacist Password" id="adminaddpassphs">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -616,7 +616,7 @@ if (isset($_SESSION["AD"])) {
                                 <button type="button" class="btn btn-outline-danger text-white" data-bs-dismiss="modal" onclick="adminadddocclose();">Close</button>
                             </div>
                             <div class="col-6 d-grid">
-                                <button type="button" class="btn btn-outline-primary text-white" onclick="adminadddoc();">Add</button>
+                                <button type="button" class="btn btn-outline-primary text-white" onclick="adminaddphm();">Add</button>
                             </div>
                         </div>
                     </div>

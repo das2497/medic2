@@ -386,8 +386,6 @@ function make_appointment(chnlid, pid) {
 
 function checkedPatient(pregno, appointment_id) {
 
-    alert(pregno, appointment_id);
-
     var r = new XMLHttpRequest();
     r.onreadystatechange = function() {
         if (r.readyState == 4) {
@@ -693,6 +691,109 @@ function admin_update_recp(recpid) {
 
 function admin_update_phm(phmid) {
     alert(phmid);
+    var uname = document.getElementById(recpid + 1).value;
+    var name = document.getElementById(recpid + 2).value;
+    var nic = document.getElementById(recpid + 3).value;
+
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function() {
+        if (r.readyState == 4) {
+            var t = r.responseText;
+            alert(t);
+
+        }
+    }
+    var f = new FormData();
+    f.append("id", recpid);
+    f.append("uname", uname);
+    f.append("name", name);
+    f.append("nic", nic);
+    r.open("POST", "adminupdatephm.php", true);
+    r.send(f);
+}
+
+function adminaddphm() {
+    var adminadduname = document.getElementById("adminaddunamephs");
+    var adminaddname = document.getElementById("adminaddnamephs");
+    var adminaddnic = document.getElementById("adminaddnicphs");
+    var adminaddpass = document.getElementById("adminaddpassphs");
+
+    var adminaddphssuccesssmall = document.getElementById("adminaddphssuccesssmallphs");
+    var adminaddunamesmall = document.getElementById("adminaddunamesmallphs");
+    var adminaddnamesmall = document.getElementById("adminaddnamesmallphs");
+    var adminaddnicsmall = document.getElementById("adminaddnicsmallphs");
+    var adminaddpasssmall = document.getElementById("adminaddpasssmallphs");
+
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function() {
+        if (r.readyState == 4) {
+            var t = r.responseText;
+            // alert(t);
+            if (t == "Please enter username") {
+                adminaddunamesmall.innerHTML = t;
+                adminaddunamesmall.style.display = "block";
+                adminaddnamesmall.style.display = "none";
+                adminaddnicsmall.style.display = "none";
+                adminaddpasssmall.style.display = "none";
+                adminaddphssuccesssmall.style.display = "none";
+            } else if (t == "Please enter name") {
+                adminaddphssuccesssmall.style.display = "none";
+                adminaddunamesmall.style.display = "none";
+                adminaddnamesmall.innerHTML = t;
+                adminaddnamesmall.style.display = "block";
+                adminaddnicsmall.style.display = "none";
+                adminaddpasssmall.style.display = "none";
+            } else if (t == "Please enter NIC") {
+                adminaddphssuccesssmall.style.display = "none";
+                adminaddunamesmall.style.display = "none";
+                adminaddnamesmall.style.display = "none";
+                adminaddnicsmall.innerHTML = t;
+                adminaddnicsmall.style.display = "block";
+                adminaddpasssmall.style.display = "none";
+            } else if (t == "Please enter password") {
+                adminaddphssuccesssmall.style.display = "none";
+                adminaddunamesmall.style.display = "none";
+                adminaddnamesmall.style.display = "none";
+                adminaddnicsmall.style.display = "none";
+                adminaddpasssmall.innerHTML = t;
+                adminaddpasssmall.style.display = "block";
+            } else if (t == "Already Registered") {
+                adminaddphssuccesssmall.innerHTML = t;
+                adminaddphssuccesssmall.style.color = "red";
+                adminaddphssuccesssmall.style.display = "block";
+                adminaddunamesmall.style.display = "none";
+                adminaddnamesmall.style.display = "none";
+                adminaddnicsmall.style.display = "none";
+                adminaddpasssmall.style.display = "none";
+            } else if (t == "Successfully Added") {
+                adminaddphssuccesssmall.innerHTML = t;
+                adminaddphssuccesssmall.style.color = "red";
+                adminaddphssuccesssmall.style.display = "block";
+                adminaddunamesmall.style.display = "none";
+                adminaddnamesmall.style.display = "none";
+                adminaddnicsmall.style.display = "none";
+                adminaddpasssmall.style.display = "none";
+                location.reload();
+            } else {
+                adminaddphssuccesssmall.innerHTML = t;
+                adminaddphssuccesssmall.style.color = "red";
+                adminaddphssuccesssmall.style.display = "block";
+                adminaddunamesmall.style.display = "none";
+                adminaddnamesmall.style.display = "none";
+                adminaddnicsmall.style.display = "none";
+                adminaddpasssmall.style.display = "none";
+            }
+        }
+    }
+
+    var f = new FormData();
+    f.append("uname", adminadduname.value);
+    f.append("name", adminaddname.value);
+    f.append("nic", adminaddnic.value);
+    f.append("pass", adminaddpass.value);
+    r.open("POST", "adminaddphm.php", true);
+    r.send(f);
+
 }
 
 function adminadddoc() {
@@ -1087,7 +1188,7 @@ function adminaddnurseclose() {
 
 
 function admin_update_nrs(nrsid) {
-    alert(nrsid);
+
     var uname = document.getElementById(nrsid + 1).value;
     var name = document.getElementById(nrsid + 2).value;
     var nic = document.getElementById(nrsid + 3).value;
@@ -1109,8 +1210,61 @@ function admin_update_nrs(nrsid) {
     r.send(f);
 }
 
-function register_patient() {
+function admin_update_phs(uname, nic) {
+    var des;
+    if (window.confirm("Are You Sure You Want To Delete Nurse " + uname)) {
+        des = "1";
+    } else {
+        des = "2";
+    }
 
+    if (des == "1") {
+        var r = new XMLHttpRequest();
+        r.onreadystatechange = function() {
+            if (r.readyState == 4) {
+                var t = r.responseText;
+                alert(t);
+
+                location.reload();
+
+            }
+        }
+        var f = new FormData();
+        f.append("uname", uname);
+        f.append("nic", nic);
+        r.open("POST", "admindeletephs.php", true);
+        r.send(f);
+    }
+}
+
+function admin_delete_nrs(uname, nic) {
+
+    var des;
+    if (window.confirm("Are You Sure You Want To Delete Nurse " + uname)) {
+        des = "1";
+    } else {
+        des = "2";
+    }
+
+    if (des == "1") {
+        var r = new XMLHttpRequest();
+        r.onreadystatechange = function() {
+            if (r.readyState == 4) {
+                var t = r.responseText;
+                alert(t);
+
+                location.reload();
+
+            }
+        }
+        var f = new FormData();
+        f.append("uname", uname);
+        f.append("nic", nic);
+        r.open("POST", "admindeletenrs.php", true);
+        r.send(f);
+    } else if (des == "2") {
+
+    }
 }
 
 //=============================================================================================================
@@ -1131,4 +1285,47 @@ function searchDoctorChannel() {
     f.append("key", key);
     r.open("POST", "dchannel_search_process.php", true);
     r.send(f);
+}
+
+//=================================================================================================================================
+
+function adminaddchnl() {
+    var dt = document.getElementById("chnldt").value;
+    var tm = document.getElementById("chnltm").value;
+    var dct = document.getElementById("chnldoc").value;
+
+    var success = document.getElementById("adminaddchnlsuccesssmall");
+    var doctor = document.getElementById("adminaddchnlsmall");
+
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function() {
+        if (r.readyState == 4) {
+            var t = r.responseText;
+            // alert(t);
+            if (t != " ") {
+                if (t == "Please Select a Doctor") {
+                    doctor.innerHTML = t;
+                    doctor.style.display = "block";
+                    success.style.display = "none";
+                } else if (t == "Already have a channeling") {
+                    doctor.style.display = "none";
+                    success.innerHTML = t;
+                    success.style.color = "red";
+                    success.style.display = "block";
+                } else if (t == "Success") {
+                    doctor.style.display = "none";
+                    success.innerHTML = t;
+                    success.style.color = "green";
+                    success.style.display = "block";
+                }
+            }
+        }
+    }
+    var f = new FormData();
+    f.append("dt", dt);
+    f.append("tm", tm);
+    f.append("doc", dct);
+    r.open("POST", "dchnl_create.php", true);
+    r.send(f);
+
 }

@@ -119,7 +119,7 @@ if (isset($_SESSION["RP"])) {
 
                                 <!-- Dashboard -->
 
-                                <div class="col-12 col-lg-10 ">
+                                <div class="col-12  ">
 
                                     <div class="row ">
 
@@ -134,7 +134,7 @@ if (isset($_SESSION["RP"])) {
                                                 <?php
                                                 $rsub2 = Database::search("SELECT * FROM specialies;");
                                                 ?>
-                                                <div class="col-6 offset-3">
+                                                <div class="col-12 col-lg-4 offset-lg-2">
                                                     <select class="form-select" id="dchnlspecility" onchange="doctrs();">
                                                         <option value="x">Select Speciality</option>
                                                         <?php
@@ -148,7 +148,11 @@ if (isset($_SESSION["RP"])) {
                                                     </select>
                                                 </div>
 
-                                                <div class="col-12  " id="docchnl">
+                                                <div class="col-12 col-lg-4 offset-lg-2 d-grid">
+                                                    <button class="btn btn-outline-primary fw-bold" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Create Channeling</button>
+                                                </div>
+
+                                                <div class="col-12   " id="docchnl">
 
                                                     <table class=" table table-responsive table-striped shadow table-hover mt-4">
                                                         <thead>
@@ -255,9 +259,66 @@ if (isset($_SESSION["RP"])) {
         </div>
         </div>
 
+        <!-- modal -->
 
-        <script src="script.js"></script>
-        <script src="bootstrap.js"></script>
+        <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content " style="background-color: #24243e;">
+                    <h4 class="text-success fw-bold text-center mt-1" style="display: none;" id="adminaddchnlsuccesssmall">Successfull</h4>
+                    <div class="modal-header">
+                        <h1 class="modal-title text-white text-uppercase fs-5" id="staticBackdropLabel">Add Nurse</h1>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 ">
+                                <label class="form-label text-white"><span class="text-danger">*</span>Doctor</label><br>
+                                <small id="adminaddchnlsmall" style="display: none;" class="small">Please Select Doctor</small>
+                                <select class="form-select" id="chnldoc">
+                                    <option value="x">Select a doctor</option>
+
+                                    <?php
+
+                                    $rs2 = Database::search("SELECT* FROM doctor;");
+                                    $sn2 = $rs2->num_rows;
+
+                                    for ($i = 0; $i < $sn2; $i++) {
+                                        $sd2 = $rs2->fetch_assoc();
+
+                                    ?>
+                                        <option value="<?php echo $sd2["id"]; ?>"><?php echo $sd2["name"]; ?></option>
+                                    <?php
+
+                                    }
+
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label text-white"><span class="text-danger">*</span>Date And Time</label><br>
+                                <small id="adminaddnursenamesmall" style="display: none;" class="small">Please Nurse Name</small>
+                                <input type="date" class="form-control" name="" id="chnldt">
+                                <input type="time" class="form-control mt-2" name="" id="chnltm">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row w-100">
+                                <div class="col-6 d-grid">
+                                    <button type="button" class="btn btn-outline-danger text-white" data-bs-dismiss="modal" onclick="reciaddnurseclose();">Close</button>
+                                </div>
+                                <div class="col-6 d-grid">
+                                    <button type="button" class="btn btn-outline-primary text-white" onclick="adminaddchnl();">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- modal -->
+
+
+            <script src="script.js"></script>
+            <script src="bootstrap.js"></script>
     </body>
 
     </html>
