@@ -49,7 +49,7 @@ if ($rs->num_rows > 0) {
                     <tr class="table-primary">
                         <td><?php echo $day . " " . $date; ?></td>
                         <td><?php echo $time; ?></td>
-                        <td><button onclick="make_appointment('<?php echo $d['chnl_id']; ?>','<?php echo $_SESSION['PT']['id']; ?>');" class="btn btn-primary">Make Appoinment</button></td>
+                        <td><button onclick="make_appointment('<?php echo $d['chnl_id']; ?>','<?php echo $_SESSION['PT']['preg_no']; ?>');" class="btn btn-primary">Make Appoinment</button></td>
                     </tr>
 
                 <?php
