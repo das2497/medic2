@@ -45,16 +45,16 @@ $d = $rs->fetch_assoc();
         </select>
     </div>
     <div class="col-md-12 col-lg-6"><label class="labels">N.I.C.</label>
-        <input type="text" class="form-control" placeholder="Email" value="<?php echo $d["nic"]; ?>" id="rpnic">
+        <input type="text" class="form-control" placeholder="N.I.C." value="<?php echo $d["nic"]; ?>" id="rpnic">
     </div>
     <div class="col-12 col-md-6"><label class="labels">Birthday</label>
         <input type="text" class="form-control" placeholder="Grade" value="<?php echo $d["dob"]; ?>" id="rpdob">
     </div>
     <div class="col-12 col-md-6"><label class="labels">Address</label>
-        <input type="text" class="form-control" placeholder="Subject" value="<?php echo $d["address"]; ?>" id="rpaddress">
+        <input type="text" class="form-control" placeholder="Address" value="<?php echo $d["address"]; ?>" id="rpaddress">
     </div>
     <div class="col-12 col-md-6"><label class="labels">Contact</label>
-        <input type="text" class="form-control" placeholder="Subject" value="<?php echo $d["contact"]; ?>" id="rpcontact">
+        <input type="text" class="form-control" placeholder="Contact" value="<?php echo $d["contact"]; ?>" id="rpcontact">
     </div>
     <div class="col-12 col-md-6"><label class="labels">Responsible</label>
         <select id="rpperson" class="form-control">
