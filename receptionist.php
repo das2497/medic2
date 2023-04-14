@@ -266,7 +266,7 @@ if (isset($_SESSION["RP"])) {
                 <div class="modal-content " style="background-color: #24243e;">
                     <h4 class="text-success fw-bold text-center mt-1" style="display: none;" id="adminaddchnlsuccesssmall">Successfull</h4>
                     <div class="modal-header">
-                        <h1 class="modal-title text-white text-uppercase fs-5" id="staticBackdropLabel">Add Nurse</h1>
+                        <h1 class="modal-title text-white text-uppercase fs-5" id="staticBackdropLabel">Create Channeling</h1>
                     </div>
                     <div class="modal-body">
                         <div class="row">
