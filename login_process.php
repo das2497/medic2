@@ -22,7 +22,7 @@ if (empty($Munm)) {
     $rs2 = Database::search("SELECT * FROM admin 
     WHERE username='" . $Munm . "' AND PASSWORD='" . $Mpswd . "';");
 
-    $rs3 = Database::search("SELECT * FROM doctor 
+    $rs3 = Database::search("SELECT doctor.id, doctor.uname, doctor.name, doctor.specialty, specialies.speciality FROM doctor 
     INNER JOIN specialies ON doctor.specialty=specialies.id 
     WHERE doctor.uname='" . $Munm . "' AND doctor.password='" . $Mpswd . "';");
 
