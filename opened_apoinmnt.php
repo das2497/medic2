@@ -44,7 +44,7 @@ $d = $rs->fetch_assoc();
     <a href="patient_history.php?appoinmtid=<?= $_POST['appoinmtid'] ?>&pid=<?= $_POST['pid'] ?>" target="_blank" class="btn btn-outline-primary fw-bold fs-4">Treatment History</a>
 </div>
 <div class="col-12 col-lg-2 offset-lg-10 d-grid m-1">
-    <button class="btn btn-outline-primary " onclick="add_prescription();"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+    <button class="btn btn-outline-primary " onclick="add_prescription('<?= $_POST['appoinmtid'] ?>','<?= $_POST['pid'] ?>');"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
         </svg></i> Create Prescription</button>

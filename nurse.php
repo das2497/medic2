@@ -120,9 +120,13 @@ if (isset($_SESSION["NR"])) {
                                             <div class="row">
                                                 <h4 class="text-success text-center" style="display: none;" id="successfulUpload"></h4>
                                                 <h4 class="text-danger text-center" style="display: none;" id="errorUpload"></h4>
-                                                <div class="col-10 offset-1 col-lg-4 offset-lg-2"><label class="form-label"><small class="text-danger">*</small>Enter Patient Id</label>
+                                                <div class="col-10 offset-1 col-lg-4 offset-lg-0"><label class="form-label"><small class="text-danger">*</small>Enter Patient Id</label>
                                                     <small class="text-danger d-inline fw-bold" id="pidawarning"></small>
                                                     <input type="text" class="form-control" placeholder="Enter Patient Id" id="pidnurse">
+                                                </div>
+                                                <div class="col-10 offset-1 col-lg-4 offset-lg-0"><label class="form-label"><small class="text-danger">*</small>Enter Lab Report Id</label>
+                                                    <small class="text-danger d-inline fw-bold" id="lidawarning"></small>
+                                                    <input type="text" class="form-control" placeholder="Enter Lab Report Id" title="Please enter only numbers" id="lidnurse">
                                                 </div>
                                                 <div class="col-10 offset-1 col-lg-2 offset-lg-0 mt-4 d-grid">
                                                     <label onclick="upload_lab_report();" class="btn btn-outline-primary fw-bold fw-bolder " for="uploadlabreport">Upload</label>

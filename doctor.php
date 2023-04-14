@@ -122,9 +122,9 @@ if (isset($_SESSION["DT"])) {
                                             <?php
                                             $dcrs = Database::search("SELECT *
         FROM patient_channels
-        INNER JOIN patient ON patient_channels.patient_id=patient.id
+        INNER JOIN patient ON patient_channels.patient_id=patient.preg_no
         INNER JOIN d_chanel_time ON patient_channels.chnl_id=d_chanel_time.chnl_id
-        WHERE d_chanel_time.doc_id='1' AND 
+        WHERE d_chanel_time.doc_id='".$_SESSION["DT"]["id"]."' AND 
         DAY(d_chanel_time.date_time) < CURDATE() AND 
         patient_channels.paid='1' AND 
         patient_channels.`status`='1';");

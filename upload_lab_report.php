@@ -21,7 +21,7 @@ if ($rs->num_rows > 0) {
             date_default_timezone_set('Asia/Colombo');
             $date = date('Y-m-d');
 
-            Database::iud("INSERT INTO lab_reports(petiont_id,path,DATE) VALUES('" . $_POST["pid"] . "','" . $file_name . "','" . $date . "');");
+            Database::iud("INSERT INTO lab_reports(lbr_id,petiont_id,path,DATE) VALUES('" . $_POST["lid"] . "','" . $_POST["pid"] . "','" . $file_name . "','" . $date . "');");
             echo "Successfull";
         } else {
             echo "Invalid file type </br> Please Try Again";

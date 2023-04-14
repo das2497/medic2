@@ -371,19 +371,6 @@ function make_appointment(chnlid, pid) {
     r.send(f);
 }
 
-// function checkedPatient(pregno) {
-
-//     var pchecked = document.getElementById("pchecked");
-
-//     if (pchecked.checked != "true") {
-//         document.getElementById("chklbl").innerHTML = "checked";
-//         pchecked.disabled = "true";
-//     }
-
-//     var r = new XMLHttpRequest();
-
-// }
-
 function checkedPatient(pregno, appointment_id) {
 
     var r = new XMLHttpRequest();
@@ -535,7 +522,7 @@ function back_to_appointments() {
 
 }
 
-function add_prescription() {
+function add_prescription(chnlid, pid) {
     var r = new XMLHttpRequest();
     r.onreadystatechange = function() {
         if (r.readyState == 4) {
@@ -545,22 +532,45 @@ function add_prescription() {
     }
 
     var f = new FormData();
-
+    f.append("chnl_id", chnlid);
+    f.append("pid", pid);
     r.open("POST", "add_prescription.php", true);
     r.send(f);
 }
 
-function saveprescrip() {
-    alert("ok");
+function saveprescrip(chnl_id, pid) {
+
+    var d_dosse = document.getElementById("d_dosse").value;
+    var a_note = document.getElementById("a_note").value;
+
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function() {
+        if (r.readyState == 4) {
+            var t = r.responseText
+            alert(t);
+        }
+    }
+
+    var f = new FormData();
+    f.append("d_dosse", d_dosse);
+    f.append("a_note", a_note);
+    f.append("chnl_id", chnl_id);
+    f.append("pid", pid);
+    r.open("POST", "save_prescription.php", true);
+    r.send(f);
+
 }
 
 //===============================Lab Report Upload===================================================================================================
 
 function upload_lab_report() {
     var pid = document.getElementById("pidnurse").value; // patient id
+    var lid = document.getElementById("lidnurse").value;
 
     if (pid == "") {
         document.getElementById("pidawarning").innerHTML = "Pleace Enrer Patient Id";
+    } else if (lid == "") {
+        document.getElementById("lidawarning").innerHTML = "Pleace Enrer Lab Report Id";
     } else {
 
         var view = document.getElementById("viewreportname"); //view tag
@@ -571,12 +581,12 @@ function upload_lab_report() {
             var url1 = window.URL.createObjectURL(file1);
             view.innerHTML = url1;
             document.getElementById("pidawarning").innerHTML = "";
-            upload_repot(pid);
+            upload_repot(pid, lid);
         }
     }
 }
 
-function upload_repot(pid) {
+function upload_repot(pid, lid) {
     var file = document.getElementById("uploadlabreport");
     var form = new FormData();
     if (file.files.length == 0) {
@@ -584,6 +594,7 @@ function upload_repot(pid) {
     } else {
         form.append("file", file.files[0]);
         form.append("pid", pid);
+        form.append("lid", lid);
     }
     var r = new XMLHttpRequest();
     r.onreadystatechange = function() {
