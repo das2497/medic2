@@ -66,6 +66,8 @@ function Mlogin() {
                 // MtitleSM.style.display = "inline";
                 window.location = "patient.php";
             } else if (text == "2") {
+
+
                 MunmSM.style.display = "none";
                 MpswdSM.style.display = "none";
                 MtitleSM.innerHTML = text;
@@ -222,6 +224,8 @@ function admin_logout() {
 
 function patient_logout() {
 
+
+
     var r = new XMLHttpRequest();
     r.onreadystatechange = function() {
         if (r.readyState == 4) {
@@ -237,6 +241,8 @@ function patient_logout() {
 
     r.open("POST", "patient_logout.php", true);
     r.send();
+
+
 }
 
 function doctor_logout() {
@@ -349,6 +355,8 @@ function d_chnl_back() {
 
     r.open("POST", "patient_d_chnl.php", true);
     r.send();
+
+
 }
 
 function make_appointment(chnlid, pid) {
@@ -369,9 +377,13 @@ function make_appointment(chnlid, pid) {
 
     r.open("POST", "make_appointment_patient.php", true);
     r.send(f);
+
+
 }
 
 function checkedPatient(pregno, appointment_id) {
+
+
 
     var r = new XMLHttpRequest();
     r.onreadystatechange = function() {
@@ -392,6 +404,8 @@ function checkedPatient(pregno, appointment_id) {
 
 function recp_patient_dtails(preg) {
 
+
+
     var r = new XMLHttpRequest();
     r.onreadystatechange = function() {
         if (r.readyState == 4) {
@@ -406,6 +420,8 @@ function recp_patient_dtails(preg) {
 
     r.open("POST", "rcp_patient_details.php", true);
     r.send(f);
+
+
 
 }
 
@@ -467,6 +483,8 @@ function pdtails_update(pregno) {
 }
 
 function patient_dtails_update() {
+
+
 
     var ppreg_no = document.getElementById("ppreg_no");
     var puname = document.getElementById("puname");
@@ -567,9 +585,13 @@ function upload_lab_report() {
     var pid = document.getElementById("pidnurse").value; // patient id
     var lid = document.getElementById("lidnurse").value;
 
+
+
     if (pid == "") {
         document.getElementById("pidawarning").innerHTML = "Pleace Enrer Patient Id";
     } else if (lid == "") {
+
+
         document.getElementById("lidawarning").innerHTML = "Pleace Enrer Lab Report Id";
     } else {
 
@@ -1337,6 +1359,47 @@ function adminaddchnl() {
     f.append("tm", tm);
     f.append("doc", dct);
     r.open("POST", "dchnl_create.php", true);
+    r.send(f);
+
+}
+
+function register_patient() {
+
+    var rpreg_no = document.getElementById("rpreg_no");
+    var rpuname = document.getElementById("rpuname");
+    var rpname = document.getElementById("rpname");
+    var rpgender = document.getElementById("rpgender");
+    var rpnic = document.getElementById("rpnic");
+    var rpdob = document.getElementById("rpdob");
+    var rpaddress = document.getElementById("rpaddress");
+    var rpcontact = document.getElementById("rpcontact");
+    var rpperson = document.getElementById("rpperson");
+    var rpnotes = document.getElementById("rpnotes");
+    var rppass = document.getElementById("rppass");
+
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function() {
+        if (r.readyState == 4) {
+            var t = r.responseText;
+            alert(t);
+            if (t != " ") {
+
+            }
+        }
+    }
+    var f = new FormData();
+    f.append("rpreg_no", rpreg_no);
+    f.append("rpuname", rpuname);
+    f.append("rpname", rpname);
+    f.append("rpgender", rpgender);
+    f.append("rpnic", rpnic);
+    f.append("rpdob", rpdob);
+    f.append("rpaddress", rpaddress);
+    f.append("rpcontact", rpcontact);
+    f.append("rpperson", rpperson);
+    f.append("rpnotes", rpnotes);
+    f.append("rppass", rppass);
+    r.open("POST", "reg_pt.php", true);
     r.send(f);
 
 }

@@ -29,16 +29,25 @@ if (isset($_SESSION["RP"])) {
 
             <div class="row pt-4 ">
                 <div class="col-12 col-lg-6 offset-lg-3"><label class="labels">Registration Number</label>
-                    <input type="text" class="form-control" placeholder="Username" id="rppreg_no">
+                    <input type="text" class="form-control" placeholder="Username" id="rpreg_no" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid password.
+                    </div>
                 </div>
                 <div class="col-12 col-lg-6"><label class="labels">Username</label>
-                    <input type="text" class="form-control" placeholder="Username" id="rpuname">
+                    <input type="text" class="form-control" placeholder="Username" id="rpuname" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid password.
+                    </div>
                 </div>
                 <div class="col-12 col-lg-6"><label class="labels">Full Name</label>
-                    <input type="text" class="form-control" placeholder="Name" id="rpname">
+                    <input type="text" class="form-control" placeholder="Name" id="rpname" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid password.
+                    </div>
                 </div>
                 <div class="col-md-12 col-lg-6"><label class="labels">Gender</label>
-                    <select id="rpgender_type" class="form-control">
+                    <select id="rpgender" class="form-control" required>
                         <option value="0">Select Gender</option>
                         <?php
                         $grs = Database::search("SELECT * FROM gender;");
@@ -53,21 +62,36 @@ if (isset($_SESSION["RP"])) {
                         }
                         ?>
                     </select>
+                    <div class="invalid-feedback">
+                        Please enter a valid password.
+                    </div>
                 </div>
                 <div class="col-md-12 col-lg-6"><label class="labels">N.I.C.</label>
-                    <input type="email" class="form-control" placeholder="Email" id="rpemail">
+                    <input type="text" class="form-control" placeholder="N.I.C." id="rpnic" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid password.
+                    </div>
                 </div>
                 <div class="col-12 col-md-6"><label class="labels">Birthday</label>
-                    <input type="date" class="form-control" placeholder="Grade" id="rpdob">
+                    <input type="date" class="form-control" placeholder="Grade" id="rpdob" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid password.
+                    </div>
                 </div>
                 <div class="col-12 col-md-6"><label class="labels">Address</label>
-                    <input type="text" class="form-control" placeholder="Subject" id="rpaddress">
+                    <input type="text" class="form-control" placeholder="Address" id="rpaddress" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid password.
+                    </div>
                 </div>
                 <div class="col-12 col-md-6"><label class="labels">Contact</label>
-                    <input type="text" class="form-control" placeholder="Subject" id="rpcontact">
+                    <input type="text" class="form-control" placeholder="Contact" id="rpcontact" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid password.
+                    </div>
                 </div>
                 <div class="col-12 col-md-6"><label class="labels">Responsible</label>
-                    <select id="rpperson" class="form-control">
+                    <select id="rpperson" class="form-control" required>
                         <option value="0">Select Responsible Person</option>
                         <?php
                         $resrs = Database::search("SELECT * FROM responsible;");
@@ -82,16 +106,25 @@ if (isset($_SESSION["RP"])) {
                         }
                         ?>
                     </select>
+                    <div class="invalid-feedback">
+                        Please enter a valid password.
+                    </div>
                 </div>
                 <div class="col-12 col-md-6"><label class="labels">special Notes</label>
-                    <textarea class="form-control" cols="auto" rows="auto" id="rpnotes"></textarea>
+                    <textarea class="form-control" cols="auto" rows="auto" id="rpnotes" required></textarea>
+                    <div class="invalid-feedback">
+                        Please enter a valid password.
+                    </div>
                 </div>
                 <div class="col-md-12 col-lg-6"><label class="labels">Password</label>
-                    <input type="text" class="form-control" placeholder="Password" id="rppass">
+                    <input type="text" class="form-control " placeholder="Password" id="rppass" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid password.
+                    </div>
                 </div>
 
                 <div class="col-10 offset-1 col-lg-4 offset-lg-1 d-grid my-4">
-                    <button class="btn btn-outline-primary fw-bold profile-button" type="button" onclick="register_patient();">Register</button>
+                    <button class="btn btn-outline-primary fw-bold profile-button" type="submit" onclick="register_patient();">Register</button>
                 </div>
                 <div class="col-10 offset-1 col-lg-4 offset-lg-1 d-grid my-4">
                     <button class="btn btn-outline-danger fw-bold profile-button" type="button">Close</button>
