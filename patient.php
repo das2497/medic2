@@ -110,7 +110,7 @@ if (isset($_SESSION["PT"])) {
                                 <div class="col-12 text-center my-2 mm" onclick="THReports();">
                                     <a href="#" class="nav-link fw-bold fs-5 text-white">Lab Reports</a>
                                 </div>
-                                <div class="col-12 text-center vh-100 " style="padding-top: 100%;">
+                                <div class="col-12 text-center vh-100 " style="padding-top: 10%;">
                                     <div class="row">
                                         <div class="col-12 text-center mm">
                                             <a class="nav-link fw-bold text-warning" href="#">Help</a>

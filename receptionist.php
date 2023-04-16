@@ -98,7 +98,7 @@ if (isset($_SESSION["RP"])) {
                                 <div class="col-12 text-center my-2 mm" onclick="THprofile();">
                                     <a href="#" class="nav-link fw-bold fs-5 text-white">Patients</a>
                                 </div>
-                                <div class="col-12 text-center vh-100 " style="padding-top: 100%;">
+                                <div class="col-12 text-center vh-100 " style="padding-top: 10%;">
                                     <div class="row">
                                         <div class="col-12 text-center mm">
                                             <a class="nav-link fw-bold text-warning" href="#">Help</a>
