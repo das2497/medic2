@@ -29,7 +29,7 @@ if (isset($_SESSION["RP"])) {
 
             <div class="row pt-4 ">
                 <div class="col-12 col-lg-6 offset-lg-3"><label class="labels">Registration Number</label>
-                    <input type="text" class="form-control" placeholder="Username" id="rpreg_no" required>
+                    <input type="text" class="form-control" placeholder="Username" id="rpreg_no" title="please only enter numbers " required>
                     <div class="invalid-feedback">
                         Please enter a valid password.
                     </div>
@@ -124,7 +124,7 @@ if (isset($_SESSION["RP"])) {
                 </div>
 
                 <div class="col-10 offset-1 col-lg-4 offset-lg-1 d-grid my-4">
-                    <button class="btn btn-outline-primary fw-bold profile-button" type="submit" onclick="register_patient();">Register</button>
+                    <button class="btn btn-outline-primary fw-bold profile-button" type="button" onclick="register_patient();">Register</button>
                 </div>
                 <div class="col-10 offset-1 col-lg-4 offset-lg-1 d-grid my-4">
                     <button class="btn btn-outline-danger fw-bold profile-button" type="button">Close</button>
@@ -139,13 +139,7 @@ if (isset($_SESSION["RP"])) {
                     event.preventDefault();
                 }
             };
-
-            // document.getElementById("rpcontact").onkeypress = function(event) {
-            //     if (event.keyCode >= 65 && event.keyCode <= 90 || event.keyCode >= 97 && event.keyCode <= 122) {
-            //         event.preventDefault();
-            //     }
-            // };
-
+        
             document.getElementById("rpcontact").onkeypress = function(event) {
                 // Check if input has reached maximum length
                 if (this.value.length === 10) {
@@ -157,6 +151,7 @@ if (isset($_SESSION["RP"])) {
                 }
             };
         </script>
+        <script src="script.js"></script>
     </body>
 
     </html>

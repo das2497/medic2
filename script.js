@@ -1365,26 +1365,23 @@ function adminaddchnl() {
 
 function register_patient() {
 
-    var rpreg_no = document.getElementById("rpreg_no");
-    var rpuname = document.getElementById("rpuname");
-    var rpname = document.getElementById("rpname");
-    var rpgender = document.getElementById("rpgender");
-    var rpnic = document.getElementById("rpnic");
-    var rpdob = document.getElementById("rpdob");
-    var rpaddress = document.getElementById("rpaddress");
-    var rpcontact = document.getElementById("rpcontact");
-    var rpperson = document.getElementById("rpperson");
-    var rpnotes = document.getElementById("rpnotes");
-    var rppass = document.getElementById("rppass");
+    var rpreg_no = document.getElementById("rpreg_no").value;
+    var rpuname = document.getElementById("rpuname").value;
+    var rpname = document.getElementById("rpname").value;
+    var rpgender = document.getElementById("rpgender").value;
+    var rpnic = document.getElementById("rpnic").value;
+    var rpdob = document.getElementById("rpdob").value;
+    var rpaddress = document.getElementById("rpaddress").value;
+    var rpcontact = document.getElementById("rpcontact").value;
+    var rpperson = document.getElementById("rpperson").value;
+    var rpnotes = document.getElementById("rpnotes").value;
+    var rppass = document.getElementById("rppass").value;
 
     var r = new XMLHttpRequest();
     r.onreadystatechange = function() {
         if (r.readyState == 4) {
             var t = r.responseText;
             alert(t);
-            if (t != " ") {
-
-            }
         }
     }
     var f = new FormData();
