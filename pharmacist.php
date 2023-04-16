@@ -126,8 +126,8 @@ if (isset($_SESSION["PH"])) {
                                                 <input onkeyup="srchprescrippharmc();" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" id="prescripsrch">
                                             </div>
                                         </div>
-                                        <div class="col-12 col-lg-2">
-
+                                        <div class="col-12 col-lg-2 d-grid">
+                                            <button class="btn btn-outline-primary fw-bold">Print</button>
                                         </div>
                                         <div class="col-12">
                                             <div class="row border m-4 p-4 rounded " id="prescripsrchrslt">
