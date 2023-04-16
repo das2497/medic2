@@ -152,45 +152,58 @@ if (isset($_SESSION["PT"])) {
                                                         </thead>
                                                         <tbody>
                                                             <?php
-                                                            $pchnlsrs = Database::search("SELECT * FROM patient_channels
-                        INNER JOIN patient ON patient_channels.patient_id=patient.id
-                        INNER JOIN d_chanel_time ON patient_channels.chnl_id=d_chanel_time.chnl_id
-                        INNER JOIN doctor ON d_chanel_time.doc_id=doctor.id
-                            WHERE patient.preg_no='" . $_SESSION['PT']['preg_no'] . "'
-                            AND patient_channels.`status`='1';");
+                                                            $pchnlsrs = Database::search("SELECT *
+                                                            FROM patient_channels
+                                                            INNER JOIN d_chanel_time ON patient_channels.chnl_id=d_chanel_time.chnl_id
+                                                            INNER JOIN doctor ON d_chanel_time.doc_id=doctor.id
+                                                            WHERE patient_channels.patient_id='" . $_SESSION['PT']['preg_no'] . "' AND patient_channels.`status`='1';");
 
                                                             $pchnlsn = $pchnlsrs->num_rows;
 
-                                                            date_default_timezone_set("Asia/Colombo");
-                                                            $currentTime = date("h:i a");
-                                                            $currentDate = date("n.j.Y");
+                                                            if ($pchnlsn > 0) {
 
-                                                            for ($i = 0; $i < $pchnlsn; $i++) {
 
-                                                                $pchnlsd = $pchnlsrs->fetch_assoc();
 
-                                                                $time = new DateTime($pchnlsd["date_time"]);
-                                                                $date = $time->format('n.j.Y');
-                                                                $day = date('l', strtotime($pchnlsd["date_time"]));
-                                                                $time = $time->format('h:i a');
+                                                                date_default_timezone_set("Asia/Colombo");
+                                                                $currentTime = date("h:i a");
+                                                                $currentDate = date("n.j.Y");
 
-                                                                if ($currentDate < $date) {
-                                                                    //  echo "yes";
-                                                                    Database::iud("UPDATE patient_channels SET `status`='0' WHERE p_chnl_id='" . $pchnlsd['p_chnl_id'] . "';");
-                                                                } else {
-                                                                    //  echo "no";
-                                                                }
+                                                                for ($i = 0; $i < $pchnlsn; $i++) {
 
-                                                                if ($pchnlsd["status"] == 1) {
+                                                                    $pchnlsd = $pchnlsrs->fetch_assoc();
+
+                                                                    $time = new DateTime($pchnlsd["date_time"]);
+                                                                    $date = $time->format('n.j.Y');
+                                                                    $day = date('l', strtotime($pchnlsd["date_time"]));
+                                                                    $time = $time->format('h:i a');
+
+                                                                    if ($currentDate > $date) {
+                                                                        //  echo "yes";
+                                                                        Database::iud("UPDATE patient_channels SET `status`='0' WHERE p_chnl_id='" . $pchnlsd['p_chnl_id'] . "';");
+                                                                    } else {
+                                                                        //  echo "no";
+                                                                    }
+
+                                                                    if ($pchnlsd["status"] == 1) {
 
                                                             ?>
-                                                                    <tr class="table-info">
-                                                                        <td><?php echo $pchnlsd["name"]; ?></td>
-                                                                        <td><?php echo $date; ?></td>
-                                                                        <td><?php echo $time; ?></td>
-                                                                    </tr>
+                                                                        <tr class="table-info">
+                                                                            <td><?php echo $pchnlsd["name"]; ?></td>
+                                                                            <td><?php echo $date; ?></td>
+                                                                            <td><?php echo $time; ?></td>
+                                                                        </tr>
                                                             <?php
+                                                                    }
                                                                 }
+
+                                                                
+                                                                
+                                                            } else {
+                                                                ?>
+                                                                        <tr class="table-info">
+                                                                            <td class="text-center fw-bold" colspan="3">No Channelings</td>                                                                           
+                                                                        </tr>
+                                                            <?php
                                                             }
                                                             ?>
                                                         </tbody>

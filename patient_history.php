@@ -138,7 +138,7 @@ if (isset($_SESSION["DT"])) {
                                             $rs1 = Database::search("SELECT *
                                             FROM prescription
                                             INNER JOIN d_chanel_time ON prescription.chnl_id=d_chanel_time.chnl_id
-                                            WHERE d_chanel_time.doc_id='" . $_SESSION["DT"]["id"] . "' AND prescription.pat_id='" . $_GET["pid"] . "'  ORDER BY prescription.pres_id DESC LIMIT 1;");
+                                            WHERE d_chanel_time.doc_id='" . $_SESSION["DT"]["id"] . "' AND prescription.pat_id='" . $_GET["pid"] . "'  ORDER BY prescription.pres_id DESC;");
 
                                             $n1 = $rs1->num_rows;
 
