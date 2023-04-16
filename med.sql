@@ -55,7 +55,7 @@ CREATE TABLE `d_chanel_time` (
   PRIMARY KEY (`chnl_id`) USING BTREE,
   KEY `FK__doctor` (`doc_id`),
   CONSTRAINT `FK__doctor` FOREIGN KEY (`doc_id`) REFERENCES `doctor` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +64,7 @@ CREATE TABLE `d_chanel_time` (
 
 LOCK TABLES `d_chanel_time` WRITE;
 /*!40000 ALTER TABLE `d_chanel_time` DISABLE KEYS */;
-INSERT INTO `d_chanel_time` VALUES (1,'2022-12-07 15:00:47',1,1),(2,'2022-12-06 20:30:25',1,1),(3,'2022-12-30 14:49:41',1,1);
+INSERT INTO `d_chanel_time` VALUES (1,'2023-04-11 13:34:41',1,1),(2,'2023-04-11 17:12:26',1,1),(3,'2023-04-11 17:13:04',1,1),(4,'2023-04-11 17:13:09',1,1),(5,'2023-04-11 17:13:10',1,1),(6,'2023-04-14 17:13:11',1,1),(7,'2023-04-15 22:21:00',1,1);
 /*!40000 ALTER TABLE `d_chanel_time` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +84,7 @@ CREATE TABLE `doctor` (
   PRIMARY KEY (`id`),
   KEY `FK_doctor_specialies` (`specialty`),
   CONSTRAINT `FK_doctor_specialies` FOREIGN KEY (`specialty`) REFERENCES `specialies` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `doctor` (
 
 LOCK TABLES `doctor` WRITE;
 /*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
-INSERT INTO `doctor` VALUES (1,'darshan','darshan dharmaraj',2,'0000');
+INSERT INTO `doctor` VALUES (1,'darshan','Darshan Dharmaraj',2,'0000'),(2,'ssss','yyyyyy',1,'0000');
 /*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,13 +129,11 @@ DROP TABLE IF EXISTS `lab_reports`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `lab_reports` (
-  `lbr_id` int NOT NULL AUTO_INCREMENT,
-  `petiont` int NOT NULL,
+  `lbr_id` int NOT NULL,
+  `petiont_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `path` text COLLATE utf8mb4_bin NOT NULL,
   `date` date NOT NULL,
-  PRIMARY KEY (`lbr_id`),
-  KEY `FK__patient2` (`petiont`),
-  CONSTRAINT `FK__patient2` FOREIGN KEY (`petiont`) REFERENCES `patient` (`id`)
+  PRIMARY KEY (`lbr_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -162,7 +160,7 @@ CREATE TABLE `nurse` (
   `passwrd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `nic` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`nrs_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,7 +169,7 @@ CREATE TABLE `nurse` (
 
 LOCK TABLES `nurse` WRITE;
 /*!40000 ALTER TABLE `nurse` DISABLE KEYS */;
-INSERT INTO `nurse` VALUES (1,'sarath','Sarath','8888','4444');
+INSERT INTO `nurse` VALUES (1,'sarath','Sarath','0000','4444'),(3,'Shalani','Shalani Perera','0000','9887788754v'),(4,'Hashini','Hashini Senadeera','0000','987676533v');
 /*!40000 ALTER TABLE `nurse` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,7 +182,7 @@ DROP TABLE IF EXISTS `patient`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `patient` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `preg_no` varchar(50) COLLATE utf8mb4_bin NOT NULL,
+  `preg_no` int NOT NULL,
   `uname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `name` varchar(50) COLLATE utf8mb4_bin NOT NULL,
   `gender` int NOT NULL DEFAULT '0',
@@ -198,6 +196,7 @@ CREATE TABLE `patient` (
   PRIMARY KEY (`id`),
   KEY `FK_patient_gender` (`gender`),
   KEY `FK_patient_responsible` (`responsible`),
+  KEY `preg_no` (`preg_no`),
   CONSTRAINT `FK_patient_gender` FOREIGN KEY (`gender`) REFERENCES `gender` (`id`),
   CONSTRAINT `FK_patient_responsible` FOREIGN KEY (`responsible`) REFERENCES `responsible` (`responsible_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
@@ -209,7 +208,7 @@ CREATE TABLE `patient` (
 
 LOCK TABLES `patient` WRITE;
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
-INSERT INTO `patient` VALUES (1,'p66666','kasun','Kasun Gamage',1,'98568','1995-02-08','no 1, main road.','0774567890','ggggg',1,'0000');
+INSERT INTO `patient` VALUES (1,6666,'kasun','Kasun Gamage',1,'98568','1995-02-08','no 1, main road.','0774567890','ggggg',1,'0000');
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -224,14 +223,14 @@ CREATE TABLE `patient_channels` (
   `p_chnl_id` int NOT NULL AUTO_INCREMENT,
   `patient_id` int NOT NULL,
   `chnl_id` int NOT NULL,
-  `status` int NOT NULL DEFAULT '1',
-  `paid` int NOT NULL DEFAULT '0',
+  `status` int NOT NULL,
+  `paid` int NOT NULL,
   PRIMARY KEY (`p_chnl_id`),
-  KEY `FK__patient` (`patient_id`),
   KEY `FK__d_chanel_time` (`chnl_id`),
+  KEY `FK_patient_channels_patient` (`patient_id`),
   CONSTRAINT `FK__d_chanel_time` FOREIGN KEY (`chnl_id`) REFERENCES `d_chanel_time` (`chnl_id`),
-  CONSTRAINT `FK__patient` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  CONSTRAINT `FK_patient_channels_patient` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`preg_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,7 +239,7 @@ CREATE TABLE `patient_channels` (
 
 LOCK TABLES `patient_channels` WRITE;
 /*!40000 ALTER TABLE `patient_channels` DISABLE KEYS */;
-INSERT INTO `patient_channels` VALUES (1,1,1,1,1);
+INSERT INTO `patient_channels` VALUES (7,6666,6,1,1);
 /*!40000 ALTER TABLE `patient_channels` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -258,7 +257,7 @@ CREATE TABLE `pharmcist` (
   `nic` varchar(50) COLLATE utf8mb4_bin NOT NULL,
   `passs` varchar(50) COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`ph_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -267,7 +266,7 @@ CREATE TABLE `pharmcist` (
 
 LOCK TABLES `pharmcist` WRITE;
 /*!40000 ALTER TABLE `pharmcist` DISABLE KEYS */;
-INSERT INTO `pharmcist` VALUES (1,'akash','Akash','222','4444');
+INSERT INTO `pharmcist` VALUES (3,'Shan','Shan menendes','967864533v','0000');
 /*!40000 ALTER TABLE `pharmcist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -280,17 +279,16 @@ DROP TABLE IF EXISTS `prescription`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prescription` (
   `pres_id` int NOT NULL AUTO_INCREMENT,
-  `doc_id` int NOT NULL,
   `pat_id` int NOT NULL,
-  `date` date NOT NULL,
+  `chnl_id` int NOT NULL,
   `drugs_doses` text COLLATE utf8mb4_bin NOT NULL,
   `notes` text COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`pres_id`),
-  KEY `FK_prescription_doctor` (`doc_id`),
   KEY `FK_prescription_patient` (`pat_id`),
-  CONSTRAINT `FK_prescription_doctor` FOREIGN KEY (`doc_id`) REFERENCES `doctor` (`id`),
-  CONSTRAINT `FK_prescription_patient` FOREIGN KEY (`pat_id`) REFERENCES `patient` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  KEY `FK_prescription_patient_channels` (`chnl_id`),
+  CONSTRAINT `FK_prescription_patient` FOREIGN KEY (`pat_id`) REFERENCES `patient` (`preg_no`),
+  CONSTRAINT `FK_prescription_patient_channels` FOREIGN KEY (`chnl_id`) REFERENCES `patient_channels` (`p_chnl_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -299,7 +297,7 @@ CREATE TABLE `prescription` (
 
 LOCK TABLES `prescription` WRITE;
 /*!40000 ALTER TABLE `prescription` DISABLE KEYS */;
-INSERT INTO `prescription` VALUES (1,1,1,'2022-12-31','eeeeeeee','dddddddd'),(2,1,1,'2022-12-31','ggggg','kkkk'),(3,1,1,'2022-12-31','ffffffff','jjjjj');
+INSERT INTO `prescription` VALUES (10,6666,7,'d','b'),(11,6666,7,'dd','dd');
 /*!40000 ALTER TABLE `prescription` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -312,7 +310,7 @@ DROP TABLE IF EXISTS `receptionist`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `receptionist` (
   `res_id` int NOT NULL AUTO_INCREMENT,
-  `uname` varchar(50) COLLATE utf8mb4_bin NOT NULL DEFAULT '0',
+  `uname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `name` varchar(50) COLLATE utf8mb4_bin NOT NULL,
   `nic` varchar(50) COLLATE utf8mb4_bin NOT NULL,
   `contact` varchar(50) COLLATE utf8mb4_bin NOT NULL,
@@ -321,7 +319,7 @@ CREATE TABLE `receptionist` (
   PRIMARY KEY (`res_id`),
   KEY `FK_receptionist_gender` (`gender`),
   CONSTRAINT `FK_receptionist_gender` FOREIGN KEY (`gender`) REFERENCES `gender` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -391,4 +389,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-01 11:20:04
+-- Dump completed on 2023-04-15 13:36:28
