@@ -83,31 +83,17 @@ if (isset($_SESSION["DT"])) {
                     <!-- body -->
 
                     <div class="row ">
-                        <div class="col-2">
+                        <div class="col-lg-2 col-12 border-end border-primary  border-4 shadow-lg position-fixed " style="background-color: #0e0e23;">
 
-                            <!-- sidebar -->
-
-                            <div class="row d-none d-lg-flex vh-100">
-                                <div class="col-12 d-none d-lg-block px-sm-2 px-0 bg-dark">
-                                    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white ">
-                                        <!-- <h4 class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white">Menu</h4>
-                                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                                            <li>
-                                                <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                                    <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline text-white">Appoinments</span> </a>
-                                            </li>
-                                        </ul> -->
-                                    </div>
+                            <div class="row d-none d-lg-block d-flex vh-100 px-2">
+                                <div class="col-12 text-center mt-3">
                                 </div>
                             </div>
-
-                            <!-- sidebar -->
-
                         </div>
 
                         <!-- Dashboard -->
 
-                        <div class="col-12 col-lg-10 ">
+                        <div class="col-12 col-lg-10 offset-lg-2 ">
 
                             <div class="row">
 
@@ -152,12 +138,7 @@ if (isset($_SESSION["DT"])) {
                                             $rs1 = Database::search("SELECT *
                                             FROM prescription
                                             INNER JOIN d_chanel_time ON prescription.chnl_id=d_chanel_time.chnl_id
-                                            WHERE d_chanel_time.doc_id='".$_SESSION["DT"]["id"]."' AND prescription.pat_id='".$_GET["pid"] ."'  ORDER BY prescription.pres_id DESC LIMIT 1;");
-
-                                            // echo "SELECT *
-                                            // FROM prescription
-                                            // INNER JOIN d_chanel_time ON prescription.chnl_id=d_chanel_time.chnl_id
-                                            // WHERE d_chanel_time.doc_id='".$_SESSION["DT"]["id"]."' AND prescription.pat_id='".$_GET["pid"] ."';";
+                                            WHERE d_chanel_time.doc_id='" . $_SESSION["DT"]["id"] . "' AND prescription.pat_id='" . $_GET["pid"] . "'  ORDER BY prescription.pres_id DESC LIMIT 1;");
 
                                             $n1 = $rs1->num_rows;
 
@@ -199,30 +180,30 @@ if (isset($_SESSION["DT"])) {
                                                     <div class="col-12 p-2">
                                                         <h4>Date : <?= $d2["date"]; ?></h4>
                                                     </div>
-                                                        <iframe src="<?= $d2["path"]; ?>" frameborder="2" width="100%" height="600px"></iframe>
-                                                    </div>
+                                                    <iframe src="<?= $d2["path"]; ?>" frameborder="2" width="100%" height="600px"></iframe>
                                                 </div>
-                                            <?php
+                                        </div>
+                                    <?php
                                             }
 
-                                            ?>
-                                        </div>
+                                    ?>
                                     </div>
                                 </div>
-
                             </div>
 
                         </div>
 
-                        <!-- Dashboard -->
-
                     </div>
 
-                    <!-- body -->
+                    <!-- Dashboard -->
 
                 </div>
 
+                <!-- body -->
+
             </div>
+
+        </div>
 
         </div>
 

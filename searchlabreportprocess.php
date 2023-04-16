@@ -16,7 +16,7 @@ if (isset($_POST["pid"])) {
                 $d = $rs->fetch_assoc();
             ?>
 
-                <iframe src="<?= $d["path"]; ?>" frameborder="1" width="100%" class="my-2"></iframe>
+                <iframe src="<?= $d["path"]; ?>" frameborder="1" width="100%" height="800px" class="my-2"></iframe>
 
             <?php
             }

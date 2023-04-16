@@ -93,7 +93,7 @@ if (isset($_SESSION["PH"])) {
                                 <div class="col-12 text-center my-2 mm">
                                     <a href="#" class="nav-link fw-bold fs-5 text-white">View Prescription</a>
                                 </div>
-                                <div class="col-12 text-center vh-100 " style="padding-top: 100%;">
+                                <div class="col-12 text-center vh-100 " style="padding-top: 10%;">
                                     <div class="row">
                                         <div class="col-12 text-center mm">
                                             <a class="nav-link fw-bold text-warning" href="#">Help</a>
@@ -126,9 +126,6 @@ if (isset($_SESSION["PH"])) {
                                                 <input onkeyup="srchprescrippharmc();" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" id="prescripsrch">
                                             </div>
                                         </div>
-                                        <!-- <div class="col-10 offset-1 col-lg-2 offset-lg-1 d-grid">
-                                            <button class="btn btn-outline-primary fw-bold fs-4">Print</button>
-                                        </div> -->
                                         <div class="col-12">
                                             <div class="row border m-4 p-4 rounded " id="prescripsrchrslt">
                                                 <p class="text-center">Please Search Prescription</p>
