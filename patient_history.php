@@ -145,10 +145,14 @@ if (isset($_SESSION["DT"])) {
                                             for ($i = 0; $i < $n1; $i++) {
                                                 $d1 = $rs1->fetch_assoc();
 
+                                                $datetime = $d1["date_time"];
+
+                                                $d1date = date("Y-m-d", strtotime($datetime));
+
                                             ?>
                                                 <div class="row border m-1 rounded">
                                                     <div class="col-12">
-                                                        <h4>Date : 2022-12-31</h4>
+                                                        <h4>Date : <?= $d1date ?></h4>
                                                     </div>
                                                     <div class="col-12"><label class="form-label">Drug And Dosage</label>
                                                         <textarea class="form-control" id="" cols="30" rows="10" readonly><?= $d1["drugs_doses"]; ?></textarea>
